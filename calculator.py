@@ -30,16 +30,19 @@ class Main(QWidget):
         button_0 = QPushButton(text = '0', clicked = lambda:self.insertNum('0'))
       
         button_dot = QPushButton(text = '.', clicked = lambda:self.insertNum('.'))
-        button_oppar = QPushButton(text = '(', clicked = lambda:self.insertNum('('))
-        button_clopar = QPushButton(text = ')', clicked = lambda:self.insertNum(')'))
+        button_openpar = QPushButton(text = '(', clicked = lambda:self.insertNum('('))
+        button_closepar = QPushButton(text = ')', clicked = lambda:self.insertNum(')'))
         
         button_add = QPushButton(text = '+', clicked = lambda:self.insertNum('+'))
         button_sub = QPushButton(text = '-', clicked = lambda:self.insertNum('-'))
         button_mult = QPushButton(text = '*', clicked = lambda:self.insertNum('*'))
         button_div = QPushButton(text = '/', clicked = lambda:self.insertNum('/'))
 
-        button_clear = QPushButton()
-        button_calculate = QPushButton(text = '0')
+        button_clear = QPushButton(text= 'C')
+        button_calculate = QPushButton(text = '=')
+
+        button_sqrt = QPushButton(text= '√')
+        button_square = QPushButton(text= '^2')
 
         button_layout.addWidget(button_1, 0, 0)
         button_layout.addWidget(button_2, 0, 1)
@@ -50,10 +53,23 @@ class Main(QWidget):
         button_layout.addWidget(button_7, 2, 0)
         button_layout.addWidget(button_8, 2, 1)
         button_layout.addWidget(button_9, 2, 2)
-        button_layout.addWidget(button_0, 3, 0)
-        button_layout.addWidget(button_dot, 3, 1)
-        button_layout.addWidget(button_oppar, 4, 0)
-        button_layout.addWidget(button_clopar, 4, 1)
+        button_layout.addWidget(button_0, 3, 1)
+
+        button_layout.addWidget(button_dot, 4, 1)
+        button_layout.addWidget(button_openpar, 3, 0)
+        button_layout.addWidget(button_closepar, 3, 2)
+        
+        button_layout.addWidget(button_add, 0, 3)
+        button_layout.addWidget(button_sub, 1, 3)
+        button_layout.addWidget(button_div, 2, 3)
+        button_layout.addWidget(button_mult, 3, 3)
+         
+        button_layout.addWidget(button_clear, 4, 0)
+        button_layout.addWidget(button_calculate, 5, 0, 1, 4)
+
+        button_layout.addWidget(button_sqrt, 4, 3)
+        button_layout.addWidget(button_square, 4, 2)
+
 
 
 

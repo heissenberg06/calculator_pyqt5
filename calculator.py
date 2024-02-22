@@ -11,11 +11,11 @@ class Main(QWidget):
         main_layout = QVBoxLayout()
         button_layout = QGridLayout()
 
-        self.histryBox = QListWidget()
+        self.historyBox = QListWidget()
         self.entryBox = QLineEdit()
         self.entryBox.setStyleSheet("color: white")
 
-        main_layout.addWidget(self.histryBox)
+        main_layout.addWidget(self.historyBox)
         main_layout.addWidget(self.entryBox)
 
         button_1 = QPushButton(text = '1', clicked = lambda:self.insertNum('1'))
@@ -38,11 +38,11 @@ class Main(QWidget):
         button_mult = QPushButton(text = '*', clicked = lambda:self.insertNum('*'))
         button_div = QPushButton(text = '/', clicked = lambda:self.insertNum('/'))
 
-        button_clear = QPushButton(text= 'C')
-        button_calculate = QPushButton(text = '=')
+        button_clear = QPushButton(text= 'C', clicked = lambda:self.clear_items())
+        button_calculate = QPushButton(text = '=', clicked = lambda:self.calculate())
 
-        button_sqrt = QPushButton(text= '√')
-        button_square = QPushButton(text= '^2')
+        button_sqrt = QPushButton(text= '√', clicked = lambda:self.insertNum('√'))
+        button_square = QPushButton(text= '^2', clicked = lambda:self.insertNum('^2'))
 
         button_layout.addWidget(button_1, 0, 0)
         button_layout.addWidget(button_2, 0, 1)
@@ -84,6 +84,21 @@ class Main(QWidget):
     def insertNum(self, num):
         self.entryBox.insert(num)
 
+    def clear_items(self):
+        self.entryBox.clear()
+
+    def calculate(self):
+        items_to_calculate = self.entryBox.text()
+        try:
+            if items_to_calculate:
+                items_to_calculate = str(items_to_calculate)
+                result = eval(items_to_calculate) #calculation function
+                self.entryBox.setText(str(result))
+                # self.historyBox.addItem(str(result))
+                self.historyBox.addItem(f"{items_to_calculate} = {result}")
+
+        except:
+            self.entryBox.setText("adam gibi yaz sikerim belani")
 
 app = QApplication([])
 app.setStyle('fusion')

@@ -1,1 +1,2 @@
-main = Main()
+
+app.exec_()

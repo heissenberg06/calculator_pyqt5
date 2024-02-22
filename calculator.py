@@ -42,7 +42,7 @@ class Main(QWidget):
         button_calculate = QPushButton(text = '=', clicked = lambda:self.calculate())
 
         button_sqrt = QPushButton(text= '√', clicked = lambda:self.insertNum('√'))
-        button_square = QPushButton(text= '^2', clicked = lambda:self.insertNum('^2'))
+        button_square = QPushButton(text= '^', clicked = lambda:self.insertNum('^'))
 
         button_layout.addWidget(button_1, 0, 0)
         button_layout.addWidget(button_2, 0, 1)
@@ -92,15 +92,34 @@ class Main(QWidget):
         try:
             if items_to_calculate:
                 items_to_calculate = str(items_to_calculate)
+                items_to_calculate = self.convert_sqrt(items_to_calculate)
+                print(items_to_calculate)
                 result = eval(items_to_calculate) #calculation function
                 self.entryBox.setText(str(result))
                 # self.historyBox.addItem(str(result))
                 self.historyBox.addItem(f"{items_to_calculate} = {result}")
 
-        except:
-            self.entryBox.setText("adam gibi yaz sikerim belani")
+        except Exception as e:
+            print(e)
+            self.entryBox.setText(f"error :{e}")
+
+    def convert_sqrt(self, process:str)-> str:
+        process = list(process)
+        i = 0
+        while i < len(process):
+            if process[i] == '√':
+                process.insert(i+2, '*')
+                process.insert(i+3, '*')
+                process.insert(i+4, '0.5')
+                del process[i]
+            i += 1
+        return ''.join(process)
+
 
 app = QApplication([])
 app.setStyle('fusion')
 main = Main()
 app.exec_()
+
+
+a : int = 3 

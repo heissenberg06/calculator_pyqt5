@@ -92,7 +92,7 @@ class Main(QWidget):
         try:
             if items_to_calculate:
                 items_to_calculate = str(items_to_calculate)
-                items_to_calculate = self.convert_sqrt(items_to_calculate)
+                items_to_calculate = self.convert_root(items_to_calculate)
                 print(items_to_calculate)
                 result = eval(items_to_calculate) #calculation function
                 self.entryBox.setText(str(result))
@@ -103,18 +103,39 @@ class Main(QWidget):
             print(e)
             self.entryBox.setText(f"error :{e}")
 
-    def convert_sqrt(self, process:str)-> str:
+    # def convert_sqrt(self, process:str)-> str:
+    #     process = list(process)
+    #     i = 0
+    #     while i < len(process):
+    #         if process[i] == '√':
+    #             process.insert(i+2, '**')
+    #             process.insert(i+3, '0.5')
+    #             del process[i]
+    #         i += 1
+    #     return ''.join(process)
+    
+    # def convert_expo(self, process:str)-> str:
+    #     process = list(process)
+    #     i = 0
+    #     while i < len(process):
+    #         if process[i] == '^':
+    #             process[i] = '**'
+    #         i +=1
+    #     return ''.join(process)
+    
+    def convert_root(self, process:str) -> str:
         process = list(process)
         i = 0
         while i < len(process):
+            if process[i] == '^':
+                process[i] = '**'
+            
             if process[i] == '√':
-                process.insert(i+2, '*')
-                process.insert(i+3, '*')
-                process.insert(i+4, '0.5')
+                process.insert(i+2, '**')
+                process.insert(i+3, '0.5')
                 del process[i]
             i += 1
         return ''.join(process)
-
 
 app = QApplication([])
 app.setStyle('fusion')
